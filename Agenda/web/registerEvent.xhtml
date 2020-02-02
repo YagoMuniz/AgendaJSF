@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:messages id="msgs" />
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputText value="Título: "/>
+            <p:inputText value="#{registerEventBean.title}" required="true" requiredMessage="Campo título deve ser informado."
+                         validatorMessage="Campo descrição deve ter ao menos 5 caracteres">
+                <f:validateLength minimum="5"/>
+            </p:inputText>
+            <h:outputText value="Descrição: "/>
+            <p:inputText value="#{registerEventBean.description}"
+                         validatorMessage="Campo descrição deve ter ao menos 10 caracteres e no máximo 100"
+                         required="true" requiredMessage="Campo descrição deve ser informado.">
+                <f:validateLength minimum="10" maximum="100"/>
+            </p:inputText>
+            <h:outputText value="Local: "/>
+            <p:inputText value="#{registerEventBean.location}" />
+            <h:outputText value="Data: "/>
+            <p:calendar  value="#{registerEventBean.time}" pattern="dd/MM/yyyy HH:mm" />
+            <p:commandButton value="Salvar" update="@form" action="#{registerEventBean.register}" />
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

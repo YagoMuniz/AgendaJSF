@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:messages id="msgs" />
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputText value="Nome: "/>
+            <p:inputText id="tiName" required="true" requiredMessage="Campo 'nome' deve ser informado." validatorMessage="Campo 'nome' deve ter ao menos 4 caracteres" value="#{registerPersonBean.name}">
+                <f:validateLength minimum="4" />
+            </p:inputText>
+            <h:outputText id="tiEmail" value="Email: "/>
+            <p:inputText value="#{registerPersonBean.email}" required="true"
+                         requiredMessage="Campo 'email' deve ser informado." validatorMessage="Email informado não é válido">
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+            </p:inputText>
+            <h:outputText id="tiPassword" value="Senha: "/>
+            <p:password value="#{registerPersonBean.password}" required="true" requiredMessage="Campo 'senha' deve ser informada"
+                validatorMessage="Campo 'senha' deve ter ao menos 3 caracteres">
+                <f:validateLength minimum="3" />
+            </p:password>
+            <h:outputText id="tiPasswordConfirm" value="Confirmar Senha: "/>
+            <p:password value="#{registerPersonBean.passwordConfirm}" required="true" requiredMessage="Campo 'confirmar senha' deve ser informada"
+                        validatorMessage="Campo 'confirmar senha' deve ter ao menos 3 caracteres">
+                <f:validateLength minimum="3" />
+            </p:password>
+            <p:commandButton value="Salvar" update="@form" action="#{registerPersonBean.register}" />
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
